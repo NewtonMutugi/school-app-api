@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_14_114033) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_15_142533) do
   create_table "courses", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "unit_id", null: false
@@ -28,6 +28,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_14_114033) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "course_id", null: false
+    t.index ["course_id"], name: "index_tasks_on_course_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -60,5 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_14_114033) do
 
   add_foreign_key "courses", "units"
   add_foreign_key "courses", "users"
+  add_foreign_key "tasks", "courses"
   add_foreign_key "tasks", "users"
 end

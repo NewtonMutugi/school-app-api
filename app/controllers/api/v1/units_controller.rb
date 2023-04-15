@@ -1,44 +1,44 @@
-class Api::V1::UnitsController < ApplicationController
+class Api::V1::CoursesController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @units = Unit.all
-    render json: @users, status: :ok
+    render json: @units
+  end
+
+  def show
+    @unit = Unit.find(params[:id])
+    render json: @unit
   end
 
   def create
-    @units = Unit.new(unit_params)
-
-    if @units.save
-      render @units.to_json, status: :created
+    @unit = Unit.new(unit_params)
+    
+    if @unit.save
+      render json: @unit, status: :created
     else
-      render json: @units.errors, status: :unprocessable_entity
+      render json: @unit.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    @units = Unit.find(params[:id])
+    @unit = Unit.find(params[:id])
 
-    if @units.update(unit_params)
-      render json: @units
+    if @unit.update(unit_params)
+      render json: @unit
     else
-      render json: {errors: @units.errors.full_messages }, status: :unprocessable_entity
+      render json: @unit.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @units = Unit.find(params[:id])
-
-    if @units.destroy
-      head :ok
-    else
-      head :unprocessable_entity
-    end
+    @unit = Unit.find(params[:id])
+    @unit.destroy
   end
 
   private
 
-  def units_params
-    params.require(:unit).permit(:name, :venue, :day_of_week, :completed, :facilitator)
+  def unit_params
+    params.require(:unit).permit(:name, :venue, :day_of_week, :duration, :facilitator)
   end
-
 end

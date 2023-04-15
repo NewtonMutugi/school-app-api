@@ -6,8 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  has_many :registrations
-  has_many :units, through: :registrations
+  has_many :courses
   has_many :tasks
 
   validates :email, presence: true, uniqueness: true
