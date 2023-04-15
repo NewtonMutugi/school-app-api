@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  venue: MyString
+  day_of_week: MyString
+  duration: 1
+  facilitator: MyString
+
+two:
+  name: MyString
+  venue: MyString
+  day_of_week: MyString
+  duration: 1
+  facilitator: MyString
