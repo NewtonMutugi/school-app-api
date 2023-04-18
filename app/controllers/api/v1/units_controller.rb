@@ -1,9 +1,9 @@
-class Api::V1::CoursesController < ApplicationController
-  before_action :authenticate_user!
+class Api::V1::UnitsController < ApplicationController
+  # before_action :authenticate_user!
 
   def index
     @units = Unit.all
-    render json: @units
+    render json: @units, status: :ok
   end
 
   def show
@@ -13,7 +13,7 @@ class Api::V1::CoursesController < ApplicationController
 
   def create
     @unit = Unit.new(unit_params)
-    
+
     if @unit.save
       render json: @unit, status: :created
     else

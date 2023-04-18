@@ -40,8 +40,9 @@ class Api::V1::UsersController < ActionController::API
     else
       head :unprocessable_entity
     end
-
   end
+
+  
 
   private
 

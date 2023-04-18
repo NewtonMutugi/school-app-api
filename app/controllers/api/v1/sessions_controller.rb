@@ -12,7 +12,7 @@ class Api::V1::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    sign_out current_user
+    sign_out current_user, status: :ok
     render json: { success: true }
   end
 

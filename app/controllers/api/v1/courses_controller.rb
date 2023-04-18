@@ -2,8 +2,8 @@ class Api::V1::CoursesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @courses = current_user.courses
-    render json: @courses
+    courses = user.courses.includes(:unit)
+    courses.as_json(include: { unit: { only: [:id, :name, :venue, :facilitator, :duration] } })
   end
 
   def show
